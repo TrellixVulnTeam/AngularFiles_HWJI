@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-google-oauth2',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GoogleOauth2Component implements OnInit {
 
-  constructor() { }
+  service: any;
+  username: string = "";
+  password: string = "";
+  constructor(service: LoginService) { 
+    this.service = LoginService;
+  }
 
   ngOnInit(): void {
+  }
+
+  onUser(value: string) { this.username = value }
+  onPassword(value: string) { this.password = value }
+
+  login(){
+    var errorDiv = document.getElementById("ErrorMessage");
+    this.service.login(this.username, this.password);
   }
 
 }
