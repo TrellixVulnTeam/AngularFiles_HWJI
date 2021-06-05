@@ -1,0 +1,17 @@
+.property1, .property2 {
+  display: inline-block;
+  width: 700px;
+  height: auto
+}
+
+.bookingPropertyContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#bookingConfirm {
+    
+  margin-left: 45%;
+}
+
