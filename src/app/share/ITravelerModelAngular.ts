@@ -1,5 +1,5 @@
 interface ITravelerModelAngular {
-  travelerId: number,
+  travelerId: string,
   fName: string,
   lName: string,
   propertyName: string,
