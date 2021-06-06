@@ -51,4 +51,9 @@ export class Home2HomeApiService {
    .map(response => response.json());
  }
 
+ getLoggedInUserInfo() {
+   return this.http.get('/getSession')
+   .map(response => response.json());
+ }
+
 }
