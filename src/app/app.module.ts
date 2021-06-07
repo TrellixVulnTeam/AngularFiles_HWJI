@@ -13,6 +13,7 @@ import { BookingComponent } from './booking/booking.component';
 import { PropertiesTableComponent } from './property/properties-table/properties-table.component';
 import { TravelerProfileComponent } from './travelerProfile/travelerProfile.component';
 import { GoogleOauth2Component } from './google-oauth2/google-oauth2.component';
+import { AddTravelerPropertyComponent } from './addTravelerProperty/addTravelerProperty.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GoogleOauth2Component } from './google-oauth2/google-oauth2.component';
     BookingComponent,
     PropertiesTableComponent,
     TravelerProfileComponent,
-    GoogleOauth2Component
+    GoogleOauth2Component,
+    AddTravelerPropertyComponent
 
   ],
   imports: [

@@ -52,8 +52,20 @@ export class Home2HomeApiService {
  }
 
  getLoggedInUserInfo() {
-   return this.http.get('/getSession')
+   return this.http.get('/api/auth-data')
    .map(response => response.json());
  }
 
+ createProperty(userId: string, propertyName: string, description: string, bathrooms: number, bedrooms: number, sqFeet: number, address: string) {
+    this.http.post('/app/properties/', {userId: userId, propertyName: propertyName, description: description, bathrooms: bathrooms, bedrooms: bedrooms, sqFeet: sqFeet, address: address}).subscribe(data => {
+    console.log(data);
+    });
+ }
+
+  /*unfavorite(userID: string, toolID: string){
+     this.http.post('/api/customer-unbookmark',  { cid: userID, tid: toolID }).subscribe(data => {
+       console.log(data);
+     });
+   }
+   */
 }

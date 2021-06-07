@@ -26,13 +26,21 @@ export class TravelerProfileComponent implements OnInit {
     private location: Location,
     private user$: Home2HomeApiService
   ) {
-    this.userId = route.snapshot.params['id'];
-    user$.getUserInfo(this.userId)
+    //this.userId = route.snapshot.params['id'];
+    //user$.getUserInfo(this.userId)
+    user$.getLoggedInUserInfo()
     .subscribe(
       result => {
-        this.firstName = result.fName;
-        this.lastName = result.lName;
-        this.propertyId = result.properties;
+        this.userId = result.userId;
+        console.log(this.userId);
+        user$.getUserInfo(this.userId)
+        .subscribe (
+            result => {
+            this.firstName = result.fName;
+            //this.lastName = result.lName;
+            },
+        );
+        /*this.propertyId = result.properties;
         user$.getProperties(this.propertyId.toString())
         .subscribe (
           result => {
@@ -51,9 +59,8 @@ export class TravelerProfileComponent implements OnInit {
           },
        
         );
-
+*/
       },
-    
     );
 
 
@@ -62,4 +69,6 @@ export class TravelerProfileComponent implements OnInit {
   ngOnInit():void {}
 
   }
+
+
 
