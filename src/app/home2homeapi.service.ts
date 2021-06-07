@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Router } from '@angular/router';
+
 
 @Injectable()
 export class Home2HomeApiService {
@@ -60,6 +62,7 @@ export class Home2HomeApiService {
     this.http.post('/app/properties/', {propertyName: propertyName, description: description, bathrooms: bathrooms, bedrooms: bedrooms, sqFeet: sqFeet, address: address, owner: userId}).subscribe(data => {
     console.log(data);
     });
+    this.router.navigate(['/property/']);
  }
 
  createBooking(userIdA: string, propertyIdA: number, userIdB: string, propertyIdB: number, dateRequested: string) {
