@@ -14,6 +14,8 @@ import { Home2HomeApiService } from '../home2homeapi.service';
 })
 export class BookingComponent implements OnInit {
   bookingId: string;
+  userA: string;
+  userB: string;
   propertyA: number;
   propertyB: number;
   propertyAName: string;
@@ -40,10 +42,10 @@ export class BookingComponent implements OnInit {
     booking$.getBookingInfo(this.bookingId)
     .subscribe(
       result => {
-        this.propertyA = result.propertyA;
-        this.propertyB = result.propertyB;
+        this.userA = result.userA; 
+        this.userB = result.userB;
 
-        booking$.getProperties(this.propertyA.toString())
+        booking$.getProperties(this.userA)
         .subscribe(
           result => {
             this.propertyAName = result.propertyName;
@@ -54,10 +56,10 @@ export class BookingComponent implements OnInit {
             this.propertyABedrooms = result.bedrooms;
             this.propertyAAddress = result.address;
           },
-             () => {},
-             () => {}
+            () => {},
+            () => {}
         );
-         booking$.getProperties(this.propertyB.toString())
+        booking$.getProperties(this.userB)
         .subscribe(
           result => {
             this.propertyBName = result.propertyName;
@@ -76,7 +78,6 @@ export class BookingComponent implements OnInit {
       () => {},
       () => {}
     );
-
 
 }
   ngOnInit():void {}
