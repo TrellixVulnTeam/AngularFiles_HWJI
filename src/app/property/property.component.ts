@@ -67,14 +67,14 @@ export class PropertyComponent implements OnInit {
     );
   }
 
-  public createBookingRequest(userB: string, propertyB: string) {
+  public async createBookingRequest(userB: string, propertyB: string) {
     this.propertyService$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString())
     .subscribe(
       result => {
         this.newBookingID = result.bookingId;
       }
     )
-
+    console.log(this.newBookingID); 
     this.router.navigateByUrl('booking/' + this.newBookingID); 
   }
 
