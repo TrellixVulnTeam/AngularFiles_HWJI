@@ -1,5 +1,5 @@
 <h3>Register Your Property</h3>
-<form #propertyForm="ngForm" (ngSubmit)="getFormValues(propertyForm.value)" [action]="['/travelerProfile/']">
+<form #propertyForm="ngForm" (ngSubmit)="getFormValues(propertyForm.value)">
     <input type="text" ngModel name="propertyName" placeholder="Enter name of your property: ">
     <input type="text" ngModel name="description" placeholder="Enter description of your property: ">
     <input type="number" ngModel name="bedrooms" placeholder="Enter number of bedrooms in your home: ">

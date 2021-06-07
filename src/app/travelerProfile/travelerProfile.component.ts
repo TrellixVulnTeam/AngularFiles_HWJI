@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Home2HomeApiService } from '../home2homeapi.service';
 @Component({
@@ -24,7 +24,8 @@ export class TravelerProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private user$: Home2HomeApiService
+    private user$: Home2HomeApiService,
+    private router: Router,
   ) {
     //this.userId = route.snapshot.params['id'];
     //user$.getUserInfo(this.userId)
@@ -68,6 +69,17 @@ export class TravelerProfileComponent implements OnInit {
 
 
 }
+
+public getFormValues(val:any) {
+    console.log(this.userId);
+    this.user$.createProperty(this.userId, val.propertyName, val.description, val.bedrooms, val.bathrooms, val.sqFeet, val.address)
+    .subscribe(
+        result => {
+            console.log(result);
+        },
+    );
+}
+
   ngOnInit():void {}
 
   }

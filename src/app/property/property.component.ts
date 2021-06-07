@@ -18,7 +18,7 @@ export class PropertyComponent implements OnInit {
   @Input() propertyNumber: string[];
   properties: IPropertyModelAngular[];
   propertyService$; 
-  user$: Home2HomeApiService; 
+  //user$: Home2HomeApiService;
   userId: string;
   propertyId: string;
   user: ITravelerModelAngular; 
