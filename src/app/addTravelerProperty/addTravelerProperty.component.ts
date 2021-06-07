@@ -4,6 +4,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Home2HomeApiService } from '../home2homeapi.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-travelerProfile',
   templateUrl: './addTravelerProperty.component.html',
@@ -22,7 +24,8 @@ export class AddTravelerPropertyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private user$: Home2HomeApiService
+    private user$: Home2HomeApiService,
+    private router: Router
   ) {
     //this.userId = route.snapshot.params['id'];
     //user$.getUserInfo(this.userId)
@@ -37,6 +40,8 @@ export class AddTravelerPropertyComponent implements OnInit {
 getFormValues(val:any) {
     console.log(this.userId);
     this.user$.createProperty(this.userId, val.propertyName, val.description, val.bedrooms, val.bathrooms, val.sqFeet, val.address);
+    //this.router.navigate(['/travelerProfile']);
+    window.location.href="https://home2hometravel.azurewebsites.net/#/travelerProfile/"
 }
 
 ngOnInit():void {}

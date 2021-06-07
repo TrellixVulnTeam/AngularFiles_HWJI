@@ -40,8 +40,9 @@ export class TravelerProfileComponent implements OnInit {
             //this.lastName = result.lName;
             },
         );
-        /*this.propertyId = result.properties;
-        user$.getProperties(this.propertyId.toString())
+        //this.propertyId = result.properties;
+        //user$.getProperties(this.propertyId.toString())
+        user$.getProperties(this.userId)
         .subscribe (
           result => {
             this.propertyName = result.propertyName;
@@ -49,8 +50,8 @@ export class TravelerProfileComponent implements OnInit {
           },
         
         );
-        this.locationPreferences = result.locationPreferences;
-        this.bookingId = result.bookings;
+        //this.locationPreferences = result.locationPreferences;
+        /*this.bookingId = result.bookings;
         user$.getBookingInfo(this.bookingId.toString())
         .subscribe (
           result => {
@@ -59,7 +60,8 @@ export class TravelerProfileComponent implements OnInit {
           },
        
         );
-*/
+        */
+
       },
     );
 

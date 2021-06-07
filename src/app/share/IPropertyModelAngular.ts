@@ -7,6 +7,7 @@ interface IPropertyModelAngular {
     sqFeet: number;
     address: string;
     averageRating: number;
+    owner: string;
 }
 
 export default IPropertyModelAngular;

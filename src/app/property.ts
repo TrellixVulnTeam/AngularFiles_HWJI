@@ -6,6 +6,7 @@ export class Property {
 		bathrooms: number,
 		sqFeet: number,
 		address: string,
-		averageRating: number
+		averageRating: number,
+		owner: string,
 }
 

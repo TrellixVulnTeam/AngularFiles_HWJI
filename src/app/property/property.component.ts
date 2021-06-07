@@ -18,10 +18,11 @@ export class PropertyComponent implements OnInit {
   @Input() propertyNumber: number[];
   properties: IPropertyModelAngular[];
   propertyService$; 
-  user$: Home2HomeApiService; 
+  //user$: Home2HomeApiService;
   userId: string;
   propertyId: number;
-  user: ITravelerModelAngular; 
+  user: ITravelerModelAngular;
+  fName: string;
 
   constructor(property$: Home2HomeApiService) {
     this.propertyService$ = property$;
@@ -32,14 +33,14 @@ export class PropertyComponent implements OnInit {
       () => console.log('REST call:' + this.properties)
     );
 
-    this.user$.getLoggedInUserInfo()
+     property$.getLoggedInUserInfo()
     .subscribe(
         result => {
           this.userId = result.userId;
-          this.user$.getUserInfo(this.userId)
+          property$.getUserInfo(this.userId)
           .subscribe(
             result => {
-              this.user.fName = result.fName; 
+              this.fName = result.fName;
               this.propertyId = result.properties[0];
             }
           )
@@ -65,7 +66,7 @@ export class PropertyComponent implements OnInit {
   }
 
   public createBookingRequest(userB: string, propertyB: number) {
-    this.user$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString());
+    this.propertyService$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString());
   }
 
 
