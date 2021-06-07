@@ -62,6 +62,12 @@ export class Home2HomeApiService {
     });
  }
 
+ createBooking(userIdA: string, propertyIdA: number, userIdB: string, propertyIdB: number, dateRequested: string) {
+   this.http.post('/app/bookings/', {userA: userIdA, userB: userIdB, propertyA: propertyIdA, propertyB: propertyIdB, dateRequested: dateRequested}).subscribe(data => {
+    console.log(data);
+   });
+ }
+
   /*unfavorite(userID: string, toolID: string){
      this.http.post('/api/customer-unbookmark',  { cid: userID, tid: toolID }).subscribe(data => {
        console.log(data);

@@ -5,6 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Home2HomeApiService } from '../home2homeapi.service';
 import IPropertyModelAngular from '../share/IPropertyModelAngular';
+import ITravelerModelAngular from '../share/ITravelerModelAngular';
 
 @Component({
   moduleId: module.id,
@@ -17,6 +18,10 @@ export class PropertyComponent implements OnInit {
   @Input() propertyNumber: number[];
   properties: IPropertyModelAngular[];
   propertyService$; 
+  user$: Home2HomeApiService; 
+  userId: string;
+  propertyId: number;
+  user: ITravelerModelAngular; 
 
   constructor(property$: Home2HomeApiService) {
     this.propertyService$ = property$;
@@ -26,6 +31,20 @@ export class PropertyComponent implements OnInit {
       () => {},
       () => console.log('REST call:' + this.properties)
     );
+
+    this.user$.getLoggedInUserInfo()
+    .subscribe(
+        result => {
+          this.userId = result.userId;
+          this.user$.getUserInfo(this.userId)
+          .subscribe(
+            result => {
+              this.user.fName = result.fName; 
+              this.propertyId = result.properties[0];
+            }
+          )
+        }
+    )
   }
 
   ngOnInit() {
@@ -44,6 +63,11 @@ export class PropertyComponent implements OnInit {
       () => console.log("searched propertes")
     );
   }
+
+  public createBookingRequest(userB: string, propertyB: number) {
+    this.user$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString());
+  }
+
 
 }
 
