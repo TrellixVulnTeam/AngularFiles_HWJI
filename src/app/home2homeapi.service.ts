@@ -57,7 +57,7 @@ export class Home2HomeApiService {
  }
 
  createProperty(userId: string, propertyName: string, description: string, bathrooms: number, bedrooms: number, sqFeet: number, address: string) {
-    this.http.post('/app/properties/', {userId: userId, propertyName: propertyName, description: description, bathrooms: bathrooms, bedrooms: bedrooms, sqFeet: sqFeet, address: address}).subscribe(data => {
+    this.http.post('/app/properties/', {propertyName: propertyName, description: description, bathrooms: bathrooms, bedrooms: bedrooms, sqFeet: sqFeet, address: address, owner: userId}).subscribe(data => {
     console.log(data);
     });
  }
