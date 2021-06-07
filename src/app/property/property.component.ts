@@ -25,8 +25,9 @@ export class PropertyComponent implements OnInit {
   router: Router; 
   newBookingID: string; 
 
-  constructor(property$: Home2HomeApiService) {
+  constructor(property$: Home2HomeApiService, router: Router) {
     this.propertyService$ = property$;
+    this.router = router; 
     property$.getPropertiesIndex()
     .subscribe(
       result => this.properties = result,
@@ -34,11 +35,11 @@ export class PropertyComponent implements OnInit {
       () => console.log('REST call:' + this.properties)
     );
 
-    this.user$.getLoggedInUserInfo()
+    property$.getLoggedInUserInfo()
     .subscribe(
         result => {
           this.userId = result.userId;
-          this.user$.getUserInfo(this.userId)
+          property$.getUserInfo(this.userId)
           .subscribe(
             result => {
               this.user.fName = result.fName; 
@@ -67,14 +68,14 @@ export class PropertyComponent implements OnInit {
   }
 
   public createBookingRequest(userB: string, propertyB: number) {
-    this.user$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString())
+    this.propertyService$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString())
     .subscribe(
       result => {
         this.newBookingID = result.bookingId;
       }
     )
 
-    this.router.navigateByUrl('#/booking/' + this.newBookingID); 
+    this.router.navigateByUrl('booking/' + this.newBookingID); 
   }
 
 
