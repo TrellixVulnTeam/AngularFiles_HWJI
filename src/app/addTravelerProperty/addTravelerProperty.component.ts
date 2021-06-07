@@ -36,7 +36,7 @@ export class AddTravelerPropertyComponent implements OnInit {
 
 getFormValues(val:any) {
     console.log(this.userId);
-    this.user$.createProperty(val.userId, val.propertyName, val.description, val.bedrooms, val.bathrooms, val.sqFeet, val.address);
+    this.user$.createProperty(this.userId, val.propertyName, val.description, val.bedrooms, val.bathrooms, val.sqFeet, val.address);
 }
 
 ngOnInit():void {}
