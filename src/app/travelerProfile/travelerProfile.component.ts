@@ -78,6 +78,7 @@ public getFormValues(val:any) {
             console.log(result);
         },
     );
+    this.router.navigate(['/travelerProfile/']);
 }
 
   ngOnInit():void {}
