@@ -1,5 +1,5 @@
 export class Property {
-    propertyId: number,
+    propertyId: string,
 		propertyName: string,
 		description: string,
 		bedrooms: number,

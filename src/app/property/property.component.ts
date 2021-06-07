@@ -15,12 +15,12 @@ import ITravelerModelAngular from '../share/ITravelerModelAngular';
 })
 
 export class PropertyComponent implements OnInit {
-  @Input() propertyNumber: number[];
+  @Input() propertyNumber: string[];
   properties: IPropertyModelAngular[];
   propertyService$; 
   user$: Home2HomeApiService; 
   userId: string;
-  propertyId: number;
+  propertyId: string;
   user: ITravelerModelAngular; 
   router: Router; 
   newBookingID: string; 
@@ -67,7 +67,7 @@ export class PropertyComponent implements OnInit {
     );
   }
 
-  public createBookingRequest(userB: string, propertyB: number) {
+  public createBookingRequest(userB: string, propertyB: string) {
     this.propertyService$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString())
     .subscribe(
       result => {

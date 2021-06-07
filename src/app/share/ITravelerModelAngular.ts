@@ -6,7 +6,7 @@ interface ITravelerModelAngular {
   description: string,
   locationPreferences: [string],
   datePreferences: [Date],
-  properties: number,
+  properties: string,
 }
 
 export default ITravelerModelAngular;
