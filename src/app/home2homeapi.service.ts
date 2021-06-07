@@ -56,7 +56,7 @@ export class Home2HomeApiService {
    .map(response => response.json());
  }
 
- createProperty(userId: string, propertyName: string, description: string, bathrooms: number, bedrooms: number, sqFeet: number, address: string) {
+ async createProperty(userId: string, propertyName: string, description: string, bathrooms: number, bedrooms: number, sqFeet: number, address: string) {
     this.http.post('/app/properties/', {propertyName: propertyName, description: description, bathrooms: bathrooms, bedrooms: bedrooms, sqFeet: sqFeet, address: address, owner: userId}).subscribe(data => {
     console.log(data);
     });
@@ -66,6 +66,7 @@ export class Home2HomeApiService {
    return this.http.post('/app/bookings/', {userA: userIdA, userB: userIdB, propertyA: propertyIdA, propertyB: propertyIdB, dateRequested: dateRequested}).map(response => response.json());
  }
 
+ 
   /*unfavorite(userID: string, toolID: string){
      this.http.post('/api/customer-unbookmark',  { cid: userID, tid: toolID }).subscribe(data => {
        console.log(data);

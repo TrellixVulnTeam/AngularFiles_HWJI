@@ -37,9 +37,9 @@ export class AddTravelerPropertyComponent implements OnInit {
     );
     }
 
-getFormValues(val:any) {
+async getFormValues(val:any) {
     console.log(this.userId);
-    this.user$.createProperty(this.userId, val.propertyName, val.description, val.bedrooms, val.bathrooms, val.sqFeet, val.address);
+    await this.user$.createProperty(this.userId, val.propertyName, val.description, val.bedrooms, val.bathrooms, val.sqFeet, val.address);
     //this.router.navigate(['/travelerProfile']);
     //window.location.href="https://home2hometravel.azurewebsites.net/#/property/"
     window.location.href="https://home2hometest2.azurewebsites.net/#/property/"
