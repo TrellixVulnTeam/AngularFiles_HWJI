@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouteReuseStrategy } from '@angular/router';
 import { Location } from '@angular/common';
 import { Home2HomeApiService } from '../home2homeapi.service';
 import IPropertyModelAngular from '../share/IPropertyModelAngular';
@@ -18,11 +18,12 @@ export class PropertyComponent implements OnInit {
   @Input() propertyNumber: number[];
   properties: IPropertyModelAngular[];
   propertyService$; 
-  //user$: Home2HomeApiService;
+  user$: Home2HomeApiService; 
   userId: string;
   propertyId: number;
-  user: ITravelerModelAngular;
-  fName: string;
+  user: ITravelerModelAngular; 
+  router: Router; 
+  newBookingID: string; 
 
   constructor(property$: Home2HomeApiService) {
     this.propertyService$ = property$;
@@ -33,14 +34,14 @@ export class PropertyComponent implements OnInit {
       () => console.log('REST call:' + this.properties)
     );
 
-     property$.getLoggedInUserInfo()
+    this.user$.getLoggedInUserInfo()
     .subscribe(
         result => {
           this.userId = result.userId;
-          property$.getUserInfo(this.userId)
+          this.user$.getUserInfo(this.userId)
           .subscribe(
             result => {
-              this.fName = result.fName;
+              this.user.fName = result.fName; 
               this.propertyId = result.properties[0];
             }
           )
@@ -66,7 +67,14 @@ export class PropertyComponent implements OnInit {
   }
 
   public createBookingRequest(userB: string, propertyB: number) {
-    this.propertyService$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString());
+    this.user$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString())
+    .subscribe(
+      result => {
+        this.newBookingID = result.bookingId;
+      }
+    )
+
+    this.router.navigateByUrl('#/booking/' + this.newBookingID); 
   }
 
 

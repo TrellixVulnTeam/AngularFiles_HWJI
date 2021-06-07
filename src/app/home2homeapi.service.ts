@@ -66,9 +66,7 @@ export class Home2HomeApiService {
  }
 
  createBooking(userIdA: string, propertyIdA: number, userIdB: string, propertyIdB: number, dateRequested: string) {
-   this.http.post('/app/bookings/', {userA: userIdA, userB: userIdB, propertyA: propertyIdA, propertyB: propertyIdB, dateRequested: dateRequested}).subscribe(data => {
-    console.log(data);
-   });
+   return this.http.post('/app/bookings/', {userA: userIdA, userB: userIdB, propertyA: propertyIdA, propertyB: propertyIdB, dateRequested: dateRequested}).map(response => response.json());
  }
 
   /*unfavorite(userID: string, toolID: string){
