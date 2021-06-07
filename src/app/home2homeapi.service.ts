@@ -65,7 +65,7 @@ export class Home2HomeApiService {
     this.router.navigate(['/property/']);
  }
 
- createBooking(userIdA: string, propertyIdA: number, userIdB: string, propertyIdB: number, dateRequested: string) {
+ createBooking(userIdA: string, propertyIdA: string, userIdB: string, propertyIdB: string, dateRequested: string) {
    return this.http.post('/app/bookings/', {userA: userIdA, userB: userIdB, propertyA: propertyIdA, propertyB: propertyIdB, dateRequested: dateRequested}).map(response => response.json());
  }
 

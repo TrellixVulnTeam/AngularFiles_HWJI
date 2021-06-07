@@ -1,5 +1,5 @@
 interface IPropertyModelAngular {
-    propertyId: number;
+    propertyId: string;
     propertyName: string;
     description: string;
     bedrooms: number;

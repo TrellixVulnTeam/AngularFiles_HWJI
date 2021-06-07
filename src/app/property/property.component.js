@@ -10,15 +10,41 @@ exports.PropertyComponent = void 0;
 require("rxjs/add/operator/switchMap");
 require("rxjs/add/operator/map");
 var core_1 = require("@angular/core");
-//import Item from '../share/Item';
 var PropertyComponent = /** @class */ (function () {
     function PropertyComponent(property$) {
         var _this = this;
-        this.propertyNumber = [123, 222];
+        this.propertyService$ = property$;
         property$.getPropertiesIndex()
             .subscribe(function (result) { return _this.properties = result; }, function () { }, function () { return console.log('REST call:' + _this.properties); });
+        this.user$.getLoggedInUserInfo()
+            .subscribe(function (result) {
+            _this.userId = result.userId;
+            _this.user$.getUserInfo(_this.userId)
+                .subscribe(function (result) {
+                _this.user.fName = result.fName;
+                _this.propertyId = result.properties[0];
+            });
+        });
     }
     PropertyComponent.prototype.ngOnInit = function () {
+    };
+    PropertyComponent.prototype.search = function (location, checkin, checkout, guests) {
+        var _this = this;
+        console.log("function works");
+        console.log(location);
+        console.log(checkin);
+        console.log(checkout);
+        console.log(guests);
+        this.propertyService$.getPropertySearchResults(location, guests)
+            .subscribe(function (result) { return _this.properties = result; }, function () { }, function () { return console.log("searched propertes"); });
+    };
+    PropertyComponent.prototype.createBookingRequest = function (userB, propertyB) {
+        var _this = this;
+        this.user$.createBooking(this.userId, this.propertyId, userB, propertyB, Date.now().toString())
+            .subscribe(function (result) {
+            _this.newBookingID = result.bookingId;
+        });
+        this.router.navigateByUrl('#/booking/' + this.newBookingID);
     };
     __decorate([
         core_1.Input()
@@ -30,43 +56,6 @@ var PropertyComponent = /** @class */ (function () {
             templateUrl: './property.component.html',
             styleUrls: ['./property.component.css']
         })
-        /*
-        export class PropertyComponent implements OnInit {
-           propertyId: string;
-           propertyName: string;
-           description: string;
-           bedrooms: number;
-           bathrooms: number;
-           sqFeet: number;
-           address: string;
-           averageRating: number;
-        
-          constructor(
-            private route: ActivatedRoute,
-            private location: Location,
-            private property$: Home2homeapiService
-          ) {
-            this.propertyId = route.snapshot.params['id'];
-            property$.getProperties(this.propertyId)
-            .subscribe(
-              result => {
-                this.propertyName = result.propertyName;
-                this.description = result.description;
-                this.bedrooms = result.bedrooms;
-                this.bathrooms = result.bathrooms;
-                this.sqFeet = result.sqFeet;
-                this.address = result.address;
-                this.averageRating = result.averageRating;
-              },
-              () => {},
-              () => {}
-            );
-          }
-        
-          ngOnInit():void {}
-        
-        }
-        */
     ], PropertyComponent);
     return PropertyComponent;
 }());
